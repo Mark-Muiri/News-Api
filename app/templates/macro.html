@@ -1,0 +1,48 @@
+{% macro liveNews(headlines) %}
+  {% for news in headlines %}
+    <div class="col col-sm-6 col-md-auto col-xs-12 col-lg-auto">
+         <!-- {{news.title}} -->
+      <li class='list-unstyled'>
+        <img src="{{news.urlToImage}}" height='100px' width="200px">
+        <h4 class="text-info">{{news.title}}</h4>
+        <p> {{news.content}} </p>
+        <p class='text-info'>Published at: {{news.publishedAt|truncate(13)}}</p>
+        <a href="{{news.url}}"><button class='btn btn-success'>Full story</button></a>
+      </li><hr>
+      <br>
+    </div>
+  {% endfor %}
+{% endmacro %}
+
+{% macro newSource(tags) %}
+  {% for tag in tags %}
+    <div class="col col-sm-6 col-xs-12 col-md-4 col-lg-4">
+      <li class='list-unstyled'>
+        <h3 class='text-info'>{{tag.name}}</h3>
+        <h4>{{tag.category}}</h4>
+        <p>{{tag.description|truncate(70)}}</p>
+        <a href="{{tag.url}}"><button class='btn btn-success'>View all News</button><br></a>
+      </li><hr><br>
+    </div>
+  {% endfor %}
+{% endmacro%}
+
+
+{% macro displaySourcesList(sources_list)%}
+{% for sources in sources_list%}
+<div class="col-md-4">
+  <div class="card">
+    <div class="card-body">
+      <div class="language">{{sources.language}}</div>
+      <a href={{sources.url}} target="_blank"><h5 class="card-title">{{sources.name}}<span class="tooltiptext">Visit {{sources.name}}</span></h5></a>
+      <h5 class="card-subtitle mb-8 text-muted">{{sources.category}}</h5>
+      <p class="card-text">{{sources.description}}</p>
+      <br>
+      <a href="/source/{{sources.id}}" class="card-link">View articles</a>
+      <br>
+    </div>
+  </div>
+</div>
+{%endfor%}
+{% endmacro %}
+

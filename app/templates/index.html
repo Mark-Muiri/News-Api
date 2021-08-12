@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% import 'macro.html' as macro %}
+{% block styles %}
+{{ super() }}
+<link href="https://fonts.googleapis.com/css?family=Abril+Fatface" rel="stylesheet">
+<link rel="stylesheet" href="{{url_for('static',filename='css/index.css') }}" type='text/css'>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="container">
+    <div>
+      <h1>The Daily Buggle</h1><br>
+      <hr>
+      <br>
+  <h3 class="text-center">TOP 📰  AROUND 🗺 </h3>
+  <hr>
+  <br>
+      <form class='form-group form-inline mr'>
+        <input type="text" name='news_search' placeholder="Search for news" class='form-control'>
+        <input type="submit" value='Search' class='btn btn-success'>
+      </form>
+    </div>
+    
+  </div>
+  
+  <div class="sources">
+    {{macro.displaySourcesList(sources)}}
+
+    <div class="container">
+      <div class="row">
+        <h3 class="mr">News Headlines</h3>
+        <ul>
+          {{macro.liveNews(updates)}}
+        </ul>
+      </div>
+    </div>
+  </div>
+  {% endblock %}
